@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QInputDialog>
+#include <QLineEdit>
 
 class MyWin : public QWidget
 {
@@ -11,6 +13,7 @@ class MyWin : public QWidget
 
 private:
     QPushButton *buttonDialog;
+    QPushButton *buttonHello;
 
 public:
     explicit MyWin(QWidget *parent = nullptr);
@@ -19,6 +22,7 @@ signals:
 
 public slots:
     void openDialog();
+    void helloWho();
 };
 
 #endif // MYWIN_H

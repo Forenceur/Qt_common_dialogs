@@ -1,7 +1,7 @@
 #include "mywin.h"
 
-#define WIN_L 320
-#define WIN_H 180
+#define WIN_L 3*180
+#define WIN_H 3*90
 
 #define BUTTON_L 80
 #define BUTTON_H 30
@@ -11,9 +11,13 @@ MyWin::MyWin(QWidget *parent) : QWidget(parent)
     setFixedSize(WIN_L,WIN_H);
 
     buttonDialog=new QPushButton("push me !",this);
-    buttonDialog->setGeometry((WIN_L-BUTTON_L)/2,(WIN_H-BUTTON_H)/2,BUTTON_L,BUTTON_H);
+    buttonDialog->setGeometry((WIN_L-BUTTON_L)/2,(WIN_H+BUTTON_H)/2,BUTTON_L,BUTTON_H);
+
+    buttonHello=new QPushButton("hello !",this);
+    buttonHello->setGeometry((WIN_L-BUTTON_L)/2,(WIN_H-3*BUTTON_H)/2,BUTTON_L,BUTTON_H);
 
     QObject::connect(buttonDialog,SIGNAL(clicked()),this,SLOT(openDialog()));
+    QObject::connect(buttonHello,SIGNAL(clicked()),this,SLOT(helloWho()));
 }
 
 void MyWin::openDialog()
@@ -30,4 +34,20 @@ void MyWin::openDialog()
     {
         QMessageBox::information(this,"information","So Sad ...");
     }
+}
+
+void MyWin::helloWho()
+{
+    bool ok=false;
+    QString pseudo=QInputDialog::getText(this,"Hello !","Salut, c'est quoi ton pseudo ?",
+                                         QLineEdit::Normal,QString(),&ok);
+    if(ok && !pseudo.isEmpty())
+    {
+        QMessageBox::information(this,"Pseudo", "Ah ! "+pseudo+" mais quel drôles de nom ?");
+    }
+    else
+    {
+        QMessageBox::information(this,"Pseudo","Mais mais ... c'est parce que ton pseudo est moche ?");
+    }
+
 }
