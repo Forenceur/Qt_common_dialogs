@@ -47,7 +47,7 @@ void MyWin::helloWho()
     }
     else
     {
-        QMessageBox::information(this,"Pseudo","Mais mais ... c'est parce que ton pseudo est moche ?");
+        QMessageBox::critical(this,"Pseudo","Mais mais ... c'est parce que ton pseudo est si moche ?");
     }
 
 }
